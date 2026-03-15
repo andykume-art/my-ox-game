@@ -56,7 +56,7 @@ const LANG={
     lvLabels:["","😊 よわよわ","🙂 まあまあ","😐 ふつう","😈 つよつよ","👹 鬼"],
     youLabel:T=>`きみ ${T.Olabel}`,cpuLabel:T=>`CPU ${T.Xlabel}`,
     winPlayer:"やったね！きみの勝ち！",winCpu:"CPUの勝ち…くやしい！",
-    roasts:["それ、目ぇつぶってても勝てたわ","回線切れたんかと思ったわ","おかんに代わってもろてええか？","今の見てた？見てへんかったやろ","三目並べの才能、他で使いや","もしかして相手勝たせるゲームやと思てる？","きみの戦略、意味不明すぎて逆にすごいわ","AIにも感情あったら今ちょっと申し訳ないねんけど","次は指やなくて頭使ってみぃや","あれ、これ初めて？3回目？…えっ、マジで？","きみの実力、盤面にモロ出てるで","弱すぎてログ残したないレベルやわ","もうちょい粘ると思てたわ。買いかぶりやったな","今のは練習やんな？…練習やんな？","きみの打ち方、新ジャンルやな"],
+    roasts:["それ、目ぇつぶってても勝てたわ 😴","回線切れたんかと思ったわ (・_・)","おかんに代わってもろてええか？ 😇","今の見てた？見てへんかったやろ (´σ_σ`)","三目並べの才能、他で使いや 🥲","もしかして相手勝たせるゲームやと思てる？ 🤡","きみの戦略、意味不明すぎて逆にすごいわ ( ˙▿˙ )","AIにも感情あったら今ちょっと申し訳ないねんけど 🥱","次は指やなくて頭使ってみぃや (ーωー)","あれ、これ初めて？3回目？…えっ、マジで？ (°д°)","きみの実力、盤面にモロ出てるで 😬","弱すぎてログ残したないレベルやわ ( ´_ゝ`)","もうちょい粘ると思てたわ。買いかぶりやったな ┐(´д`)┌","今のは練習やんな？…練習やんな？ ( ；∀；)","きみの打ち方、新ジャンルやな 🤪"],
     winMark:m=>`${m} の勝ち！`,thinking:"CPU考え中…",
     yourTurn:"きみの番だよ",turnMark:m=>`${m} の番だよ`,hintOff:"ヒントOFF",blindOn:"🙈 ブラインド",
     vanishWarn:w=>`${w}の古いマークが消えるよ`,vanishWarnGeneric:"次に置くとどれか消えるよ",
@@ -89,7 +89,7 @@ const LANG={
     lvLabels:["","😊 Easy","🙂 Mild","😐 Normal","😈 Hard","👹 Demon"],
     youLabel:T=>`You ${T.Olabel}`,cpuLabel:T=>`CPU ${T.Xlabel}`,
     winPlayer:"You win!",winCpu:"CPU wins…",winMark:m=>`${m} wins!`,thinking:"CPU thinking…",
-    roasts:["that's why she left you","I've seen better moves from a screensaver","are you even trying or just vibing","my RAM could beat you and I only have 4KB","you play like you googled 'how to lose at tic tac toe'","I'd say GG but there was no G on your side","bro really said 'hold my brain' and put it down","plot twist: you were the tutorial all along","don't worry, losing builds character… you must have a LOT","I've been going easy on you. this WAS easy mode","you sure you're not playing for the other team?","that move had the energy of replying-all by accident","your strategy is giving 'random number generator'","somewhere, a chess AI just felt second-hand embarrassment","I'd let you win but my code has standards"],
+    roasts:["that's why she left you 😢","I've seen better moves from a screensaver 😴","are you even trying or just vibing 😶‍🌫️","my RAM could beat you and I only have 4KB 🤖","you play like you googled 'how to lose' 🫠","I'd say GG but there was no G on your side 😶","bro really said 'hold my brain' and put it down 🙄","plot twist: you were the tutorial all along 🤡","losing builds character… you must have a LOT 😬","I've been going easy. this WAS easy mode 😏","you sure you're not playing for MY team? 🫣","that move had reply-all energy 😳","your strategy is giving 'random number generator' 🥴","a chess AI just felt second-hand embarrassment 😮‍💨","I'd let you win but my code has standards 😌"],
     yourTurn:"Your turn",turnMark:m=>`${m}'s turn`,hintOff:"Hints OFF",blindOn:"🙈 Blind",
     vanishWarn:w=>`${w}'s oldest vanishes`,vanishWarnGeneric:"A mark will disappear",
     remaining:n=>`${n} left`,youWho:"You",
@@ -234,7 +234,7 @@ function genId(){return Date.now().toString(36)+Math.random().toString(36).slice
 const RK=c=>`ox-room:${c}`;
 function gAE(id){return AVATARS.find(a=>a.id===id)?.emoji||"❓";}
 
-const baseCss=`@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blindFade{0%{opacity:1}70%{opacity:1}100%{opacity:0}}`;
+const baseCss=`@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blindFade{0%{opacity:1}70%{opacity:1}100%{opacity:0}}@keyframes roastIn{0%{opacity:0}100%{opacity:1}}`;
 
 // ---------- UI ----------
 function Sq({value,onClick,highlight,fading,lastMove,T,blind,visible,hintDot}){
@@ -587,7 +587,10 @@ export default function OXGame(){
       <span style={{color:T.X}}>{isCpuLike?(pMark==="X"?t.youLabel(T):t.cpuLabel(T)):"X"}: {score.X}</span>
     </div>)}
     <div style={{fontSize:17,fontWeight:700,minHeight:26,color:winner?T.accent:think?T.textDim:!myT&&isOl?T.textFaint:T.light,fontFamily:T.fontTitle}}>{status}</div>
-    {roast&&gO&&<div style={{fontSize:12,color:T.textDim,fontStyle:"italic",maxWidth:280,textAlign:"center",fontFamily:T.fontBody,animation:"fadeIn 0.5s ease",lineHeight:1.4}}>"{roast}"</div>}
+    {roast&&gO&&<div style={{position:"fixed",zIndex:50,top:"50%",left:"50%",transform:"translate(-50%,-50%)",whiteSpace:"nowrap",padding:"16px 28px",borderRadius:20,background:"rgba(255,255,255,0.8)",backdropFilter:"blur(2px)",color:"#1a1a1a",fontSize:18,fontWeight:700,fontStyle:"italic",textAlign:"center",fontFamily:T.fontBody,animation:"roastIn 1.5s ease",lineHeight:1,boxShadow:"0 4px 24px rgba(0,0,0,0.15)"}}>
+      {roast}
+      <div style={{position:"absolute",bottom:-10,left:"50%",transform:"translateX(-50%)",width:0,height:0,borderLeft:"10px solid transparent",borderRight:"10px solid transparent",borderTop:"10px solid rgba(255,255,255,0.8)"}}/>
+    </div>}
     <div style={{fontSize:11,color:T.warn,minHeight:14,fontWeight:600}}>{mInfo}</div>
     <div style={{display:"grid",gridTemplateColumns:"repeat(3, 96px)",gap:isC?5:3,background:T.boardBg,padding:isC?5:3,borderRadius:isC?14:4,border:T.boardBorder,boxShadow:isC?"8px 8px 0 rgba(0,0,0,0.3)":"0 4px 20px rgba(0,0,0,0.3)"}}>
       {board.map((v,i)=>(<Sq key={i} value={v} onClick={()=>hClick(i)} highlight={wLine.includes(i)} fading={fI===i} lastMove={!gO&&lM===i} T={T} blind={blind&&!gO} visible={visible[i]} hintDot={mode==="practice"&&showBestHint&&bestMoves.includes(i)}/>))}
