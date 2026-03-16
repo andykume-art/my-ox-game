@@ -451,7 +451,7 @@ function RPB({snapshots,t,T,onClose}){const[step,setStep]=useState(snapshots.len
 }
 
 // ---------- Profile Page ----------
-function ProfilePage({t,T,prof,setProf,lang,onBack,isFirstLaunch}){
+function ProfilePage({t,T,prof,setProf,lang,setLang,onBack,isFirstLaunch}){
   const[lp,setLP]=useState({...prof});const isC=T.id==="comic";
   function sel(cat,val){setLP(p=>({...p,[cat]:p[cat]===val?null:val}));}
   function save(){setProf(lp);onBack();}
@@ -465,9 +465,22 @@ function ProfilePage({t,T,prof,setProf,lang,onBack,isFirstLaunch}){
     ?(lang==="ja"?"あなたのことを教えてね！ゲーム体験をカスタマイズするよ ✨":"Tell us about yourself! We'll customize your experience ✨")
     :(lang==="ja"?"プロフィールを変更できるよ":"Edit your profile");
   return(
-    <div className="theme-bg"><style>{baseCss}{T.css}</style><div style={{position:"relative",zIndex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:20,minHeight:"100vh",fontFamily:T.fontBody,gap:18}}>
-      <div style={{fontSize:22,fontWeight:800,color:T.light,fontFamily:T.fontTitle}}>{isFirstLaunch?(lang==="ja"?"ようこそ！":"Welcome!"):t.profileTitle}</div>
+    <div className="theme-bg"><style>{baseCss}{T.css}</style><div style={{position:"relative",zIndex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:20,minHeight:"100vh",fontFamily:T.fontBody,gap:16}}>
+      <div style={{fontSize:28,fontWeight:800,color:T.light,fontFamily:T.fontTitle,letterSpacing:4}}>{lang==="ja"?<><span style={{color:T.O}}>◯</span><span style={{color:T.X}}>✕</span> ゲーム</>:"Tic Tac Toe"}</div>
+      <div style={{fontSize:20,fontWeight:800,color:T.light,fontFamily:T.fontTitle}}>{isFirstLaunch?(lang==="ja"?"ようこそ！":"Welcome!"):t.profileTitle}</div>
       <div style={{fontSize:12,color:T.text,textAlign:"center",maxWidth:260}}>{desc}</div>
+
+      <div style={{width:280}}>
+        <div style={{fontSize:13,fontWeight:700,color:T.light,marginBottom:6}}>{t.langLabel}</div>
+        <div style={{display:"flex",gap:6}}>
+          {[["ja","🇯🇵 日本語"],["en","🇬🇧 English"]].map(([k,lb])=>(
+            <button key={k} onClick={()=>setLang(k)} style={{padding:"6px 14px",fontSize:13,fontWeight:700,borderRadius:8,
+              border:lang===k?`2px solid ${T.accent}`:`1px solid ${T.accent}55`,
+              background:lang===k?"rgba(180,140,80,0.25)":"rgba(255,255,255,0.06)",color:lang===k?T.light:T.light+"cc",
+              cursor:"pointer",fontFamily:T.fontBody,transition:"all 0.15s"}}>{lb}</button>
+          ))}
+        </div>
+      </div>
 
       <div style={{width:280}}>
         <div style={{fontSize:13,fontWeight:700,color:T.light,marginBottom:6}}>{t.zodiacLabel}</div>
@@ -669,10 +682,10 @@ export default function OXGame(){
 
   // ========== RANKING ==========
   if(mode==="ranking")return <RankingPage t={t} T={T} rI={rI} playerName={playerName} setPlayerName={setPN} onBack={()=>setMode(null)}/>;
-  if(mode==="profile")return <ProfilePage t={t} T={T} prof={prof} setProf={p=>{setProf(p);setProfDone(true);}} lang={lang} isFirstLaunch={false} onBack={()=>setMode(null)}/>;
+  if(mode==="profile")return <ProfilePage t={t} T={T} prof={prof} setProf={p=>{setProf(p);setProfDone(true);}} lang={lang} setLang={setLang} isFirstLaunch={false} onBack={()=>setMode(null)}/>;
 
   // First launch: show profile before menu
-  if(rL&&!profDone&&mode===null)return <ProfilePage t={t} T={T} prof={prof} setProf={p=>{setProf(p);setProfDone(true);}} lang={lang} isFirstLaunch={true} onBack={()=>setProfDone(true)}/>;
+  if(rL&&!profDone&&mode===null)return <ProfilePage t={t} T={T} prof={prof} setProf={p=>{setProf(p);setProfDone(true);}} lang={lang} setLang={setLang} isFirstLaunch={true} onBack={()=>setProfDone(true)}/>;
 
   // ========== FACE CAPTURE ==========
   if(mode==="face-pvp-1"){return(<Wrap><Title size={26}/><FaceCapture label={t.faceP1} T={T} onCapture={d=>{setFaceO(d);setMode("face-pvp-2");}} onSkip={()=>{setFaceO(null);setMode("face-pvp-2");}}/></Wrap>);}
