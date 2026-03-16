@@ -12,7 +12,60 @@ const AVATARS = [
   { id:"god",emoji:"✨",god:true},
 ];
 
-// ---------- Themes ----------
+// ---------- Profile Attributes ----------
+const ZODIACS=["♈aries","♉taurus","♊gemini","♋cancer","♌leo","♍virgo","♎libra","♏scorpio","♐sagittarius","♑capricorn","♒aquarius","♓pisces"];
+const BLOODS=["A","B","O","AB"];
+const MBTIS=["INTJ","INTP","ENTJ","ENTP","INFJ","INFP","ENFJ","ENFP","ISTJ","ISFJ","ESTJ","ESFJ","ISTP","ISFP","ESTP","ESFP"];
+const GENS=["gen_z","millennial","gen_x","boomer"];
+
+const ZODIAC_JA={"♈aries":"牡羊座","♉taurus":"牡牛座","♊gemini":"双子座","♋cancer":"蟹座","♌leo":"獅子座","♍virgo":"乙女座","♎libra":"天秤座","♏scorpio":"蠍座","♐sagittarius":"射手座","♑capricorn":"山羊座","♒aquarius":"水瓶座","♓pisces":"魚座"};
+
+const ATTR_ROASTS_JA={
+  zodiac:{
+    "♈aries":"牡羊座のくせに攻めが弱すぎるわ 🐏","♉taurus":"牡牛座やから動きトロいんか 🐄","♊gemini":"双子座のくせに二手先も読めんのか 🤡",
+    "♋cancer":"蟹座やから横にしか進めへんの？ 🦀","♌leo":"獅子座の王様（笑）負け王やん 👑","♍virgo":"乙女座の完璧主義どこいってん 😬",
+    "♎libra":"天秤座で優柔不断すぎて負けたな ⚖️","♏scorpio":"さそり座の毒、自分に効いてるやん 🦂","♐sagittarius":"射手座のくせに的外れすぎるわ 🏹",
+    "♑capricorn":"山羊座の堅実さ、盤面には出てへんな 🐐","♒aquarius":"水瓶座の天才肌（自称）やったか 😏","♓pisces":"魚座やから流されるまま負けたん？ 🐟",
+  },
+  blood:{
+    "A":"A型の慎重さ、裏目に出てるで 😇","B":"B型っぽい負け方やな〜自由すぎるわ 🤪",
+    "O":"O型の大雑把さ、盤面に出てるで 😬","AB":"AB型の天才的発想（笑）で負けたん？ 🧠",
+  },
+  mbti:{
+    "INTJ":"戦略家（笑）の戦略どこ？ 🤔","INTP":"論理的に負ける天才やな 🧪","ENTJ":"指揮官が部下ゼロで負けてるやん 😏",
+    "ENTP":"討論で勝てても盤面では無理やったな 🗣️","INFJ":"提唱者のくせに何も提唱できてへん 😶","INFP":"理想と現実の差がエグいな 🌈",
+    "ENFJ":"みんなのリーダー（自分は負け） 😇","ENFP":"運動家の行動力、空回りしてるで 🤸","ISTJ":"管理者なのに盤面管理できてへんやん 📋",
+    "ISFJ":"擁護者のくせに自分守れてへんな 🛡️","ESTJ":"幹部の判断力それ？ 💼","ESFJ":"領事って外交下手やったん？ 🤝",
+    "ISTP":"巨匠の技、どこで使うん？ 🔧","ISFP":"冒険家の冒険、失敗に終わったな 🎨","ESTP":"起業家精神で負けを量産してるやん 💥","ESFP":"エンターテイナーやな、負け芸として 🎭",
+  },
+  gen:{
+    "gen_z":"Z世代のくせにデジタルゲームで負けるん？ 📱","millennial":"ミレニアル世代、もう衰えたん？ 👴",
+    "gen_x":"X世代の経験値、どこ行ってん？ 🤷","boomer":"OK Boomer、もう休んだ方がええで 💤",
+  },
+};
+const ATTR_ROASTS_EN={
+  zodiac:{
+    "♈aries":"aries energy but no fire in your moves 🐏","♉taurus":"stubborn AND wrong, classic taurus 🐄","♊gemini":"two-faced but zero-brained, gemini moment 🤡",
+    "♋cancer":"cancer retreating into their shell after this L 🦀","♌leo":"king of the jungle, jester of the board 👑","♍virgo":"virgo perfectionism? where? 😬",
+    "♎libra":"libra couldn't decide on a good move ⚖️","♏scorpio":"scorpio stung themselves with that play 🦂","♐sagittarius":"sagittarius missed the target... again 🏹",
+    "♑capricorn":"capricorn's master plan was to lose? 🐐","♒aquarius":"aquarius big brain (small results) 😏","♓pisces":"pisces went with the flow... off a cliff 🐟",
+  },
+  blood:{
+    "A":"type A personality, type L gameplay 😇","B":"type B: B for 'bad at this' 🤪",
+    "O":"type O: O as in 'Oh no' 😬","AB":"AB type: All Bad 🧠",
+  },
+  mbti:{
+    "INTJ":"mastermind? more like master-lost 🤔","INTP":"overthought it and still lost, classic INTP 🧪","ENTJ":"commander with zero troops 😏",
+    "ENTP":"debated yourself into an L, huh 🗣️","INFJ":"rarest type, common L 😶","INFP":"you imagined winning and called it a day 🌈",
+    "ENFJ":"leading everyone except yourself to victory 😇","ENFP":"main character energy, side character results 🤸","ISTJ":"your system failed systematically 📋",
+    "ISFJ":"defended everyone but yourself 🛡️","ESTJ":"executive dysfunction on the board 💼","ESFJ":"consul couldn't negotiate a win 🤝",
+    "ISTP":"virtuoso of losing 🔧","ISFP":"adventurer found a dead end 🎨","ESTP":"entrepreneur of bad moves 💥","ESFP":"entertaining... as a blooper reel 🎭",
+  },
+  gen:{
+    "gen_z":"gen z lost at a phone game? embarrassing 📱","millennial":"millennial energy: participation trophy incoming 🏆",
+    "gen_x":"gen x: forgotten by the board too 🤷","boomer":"ok boomer, stick to chess... actually don't 💤",
+  },
+};
 const THEMES = {
   wood:{id:"wood",O:"#f0e4d0",X:"#1c0f06",Olabel:"◯",Xlabel:"✕",
     light:"#f0e4d0",dark:"#1c0f06",text:"#d4c4a8",textDim:"#9c8b70",textFaint:"#6b5c47",
@@ -50,7 +103,7 @@ const THEMES = {
 // ---------- i18n ----------
 const LANG={
   ja:{title:"ゲーム",desc:"盤上に置けるのは3つまで！4つ目を置くと一番古いやつが消えるよ",
-    settings:"⚙ 設定",hintLabel:"消えるマークを教える",langLabel:"English",muteLabel:"消音",themeLabel:"テーマ切替",blindLabel:"ブラインドモード",
+    settings:"⚙ 設定",hintLabel:"消えるマークを教える",langLabel:"English",muteLabel:"消音",vibLabel:"振動",themeLabel:"テーマ切替",blindLabel:"ブラインドモード",
     pvp:"👫 ふたりで遊ぶ",cpuBattle:"vs CPU 🤖",online:"🌐 ネット対戦",ranking:"🏅 ランキング",practice:"📖 れんしゅう",
     chooseLv:"レベルを選んでね",start:"いざ勝負！",turnOrder:"手番",first:"先手",second:"後手",random:"ランダム",
     lvLabels:["","😊 よわよわ","🙂 まあまあ","😐 ふつう","😈 つよつよ","👹 鬼"],
@@ -75,15 +128,18 @@ const LANG={
     leave:"退出",copyCode:"コピー",copied:"コピーした！",
     chooseAvatar:"アイコンを選んでね",monsterLock:"🔒 初段以上",eliteLock:"🔒 五段以上",legendLock:"🔒 八段以上",godLock:"🔒 十一段で解放",
     vs:"vs",replay:"ふりかえり",replayStep:(c,t)=>`${c} / ${t} 手目`,replayEnd:"終局",
+    faceMode:"📸 顔コマモード",faceP1:"プレイヤー1、キメ顔で！",faceP2:"プレイヤー2、いくで！",faceCpu:"きみのキメ顔を撮るで！",
     practiceTitle:"📖 れんしゅうモード",
     advGreat:"✨ ナイス！最善手だよ！",advGood:"👍 いい手だね！",advOk:"🤔 悪くはないけど…",advBad:"😥 もっといい手があったよ",advMiss:"💀 あちゃ〜…ここは危なかった",
     tipBest:p=>`💡 最善手は ${p} だったよ`,
     tips:["💡 中央(5)は最強のマス！迷ったらここ","💡 角(1,3,7,9)は次に強い。端より角を狙おう","💡 相手がリーチならまずブロック！","💡 消えるマークを忘れずに数えよう","💡 相手の古いマークがどこか意識しよう","💡 自分のリーチを2つ作ると勝ちやすい","💡 後手は中央を取られたら角で対抗"],
     showHints:"ヒントを表示",
     rankingTitle:"🏅 ランキング",noData:"まだデータがないよ",you:"(きみ)",registerName:"名前を登録してね",register:"登録",
+    profile:"🎭 プロフィール",profileTitle:"プロフィール設定",zodiacLabel:"星座",bloodLabel:"血液型",mbtiLabel:"MBTI",genLabel:"世代",
+    genNames:{gen_z:"Z世代",millennial:"ミレニアル",gen_x:"X世代",boomer:"ブーマー"},save:"保存",
   },
   en:{title:"Game",desc:"Max 3 marks! The oldest disappears on the 4th",
-    settings:"⚙ Settings",hintLabel:"Show vanishing marks",langLabel:"日本語",muteLabel:"Mute",themeLabel:"Theme",blindLabel:"Blind mode",
+    settings:"⚙ Settings",hintLabel:"Show vanishing marks",langLabel:"日本語",muteLabel:"Mute",vibLabel:"Vibrate",themeLabel:"Theme",blindLabel:"Blind mode",
     pvp:"👫 Two Players",cpuBattle:"vs CPU 🤖",online:"🌐 Online",ranking:"🏅 Ranking",practice:"📖 Practice",
     chooseLv:"Pick a level",start:"Let's go!",turnOrder:"Turn",first:"1st",second:"2nd",random:"Random",
     lvLabels:["","😊 Easy","🙂 Mild","😐 Normal","😈 Hard","👹 Demon"],
@@ -107,12 +163,15 @@ const LANG={
     leave:"Leave",copyCode:"Copy",copied:"Copied!",
     chooseAvatar:"Choose icon",monsterLock:"🔒 Shodan+",eliteLock:"🔒 5-dan+",legendLock:"🔒 8-dan+",godLock:"🔒 11-dan",
     vs:"vs",replay:"Replay",replayStep:(c,t)=>`${c}/${t}`,replayEnd:"Final",
+    faceMode:"📸 Face Mode",faceP1:"Player 1, strike a pose!",faceP2:"Player 2, your turn!",faceCpu:"Show me your game face!",
     practiceTitle:"📖 Practice Mode",
     advGreat:"✨ Perfect! Best move!",advGood:"👍 Nice move!",advOk:"🤔 Not bad, but…",advBad:"😥 There was a better move",advMiss:"💀 Oops… that was risky",
     tipBest:p=>`💡 Best was square ${p}`,
     tips:["💡 Center (5) is king! Go there when in doubt","💡 Corners (1,3,7,9) beat edges. Aim for corners","💡 Block opponent's winning lines first!","💡 Keep track of vanishing marks","💡 Watch where opponent's oldest mark is","💡 Try to create two winning threats at once","💡 If you go second, counter center with corners"],
     showHints:"Show hints",
     rankingTitle:"🏅 Ranking",noData:"No data yet",you:"(you)",registerName:"Enter your name",register:"Register",
+    profile:"🎭 Profile",profileTitle:"Profile Setup",zodiacLabel:"Zodiac",bloodLabel:"Blood type",mbtiLabel:"MBTI",genLabel:"Generation",
+    genNames:{gen_z:"Gen Z",millennial:"Millennial",gen_x:"Gen X",boomer:"Boomer"},save:"Save",
   },
 };
 
@@ -236,20 +295,67 @@ function gAE(id){return AVATARS.find(a=>a.id===id)?.emoji||"❓";}
 
 const baseCss=`@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blindFade{0%{opacity:1}70%{opacity:1}100%{opacity:0}}@keyframes roastIn{0%{opacity:0}100%{opacity:1}}`;
 
+// ---------- Vibration ----------
+let VIB=false;
+function vib(pattern){if(!VIB||!navigator.vibrate)return;try{navigator.vibrate(pattern);}catch(e){}}
+function vibTap(){vib(50);}        // opponent moved
+function vibRoast(){vib([30,40,30,40,30]);} // roast taunt
+function vibBlind(){vib(30);}      // blind mode: something happened
+
+// ---------- Face Capture ----------
+function FaceCapture({label,onCapture,onSkip,T}){
+  const videoRef=useRef(null);const canvasRef=useRef(null);const[stream,setStream]=useState(null);const[photo,setPhoto]=useState(null);const[err,setErr]=useState(false);
+  const isC=T.id==="comic";
+  useEffect(()=>{let s=null;
+    (async()=>{try{s=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user",width:240,height:240}});if(videoRef.current){videoRef.current.srcObject=s;videoRef.current.play();}setStream(s);}catch(e){setErr(true);}})();
+    return()=>{if(s)s.getTracks().forEach(t=>t.stop());};
+  },[]);
+  function snap(){
+    const v=videoRef.current;const c=canvasRef.current;if(!v||!c)return;
+    const ctx=c.getContext("2d");const s=Math.min(v.videoWidth,v.videoHeight);const sx=(v.videoWidth-s)/2;const sy=(v.videoHeight-s)/2;
+    c.width=120;c.height=120;ctx.save();ctx.beginPath();ctx.arc(60,60,60,0,Math.PI*2);ctx.clip();ctx.drawImage(v,sx,sy,s,s,0,0,120,120);ctx.restore();
+    setPhoto(c.toDataURL("image/jpeg",0.8));
+  }
+  function confirm(){if(photo)onCapture(photo);if(stream)stream.getTracks().forEach(t=>t.stop());}
+  function retry(){setPhoto(null);}
+  if(err)return(<div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:12}}>
+    <div style={{fontSize:14,color:T.text,fontFamily:T.fontBody}}>{label}</div>
+    <div style={{fontSize:48,width:120,height:120,borderRadius:60,background:"rgba(0,0,0,0.2)",display:"flex",alignItems:"center",justifyContent:"center"}}>📷❌</div>
+    <div style={{fontSize:12,color:T.textDim}}>Camera not available</div>
+    <button onClick={onSkip} style={{padding:"8px 20px",fontSize:13,fontWeight:700,borderRadius:8,border:`1px solid ${T.btnGhostBorder}`,background:"transparent",color:T.btnGhostColor,cursor:"pointer",fontFamily:T.fontBody}}>Skip</button>
+  </div>);
+  return(<div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:12}}>
+    <div style={{fontSize:16,fontWeight:700,color:T.light,fontFamily:T.fontTitle}}>{label}</div>
+    <canvas ref={canvasRef} style={{display:"none"}}/>
+    {!photo?(<>
+      <video ref={videoRef} playsInline muted style={{width:160,height:160,borderRadius:80,objectFit:"cover",border:`3px solid ${T.accent}`,background:"#000",transform:"scaleX(-1)"}}/>
+      <button onClick={snap} style={{padding:"10px 28px",fontSize:15,fontWeight:700,borderRadius:isC?12:8,border:isC?`3px solid ${T.dark}`:"none",background:T.btnPrimBg,color:T.btnPrimColor,cursor:"pointer",fontFamily:T.fontBody,boxShadow:isC?"4px 4px 0 "+T.dark:"none"}}>📸 パシャ！</button>
+    </>):(<>
+      <img src={photo} style={{width:120,height:120,borderRadius:60,border:`3px solid ${T.accent}`}} alt="face"/>
+      <div style={{display:"flex",gap:8}}>
+        <button onClick={confirm} style={{padding:"8px 20px",fontSize:14,fontWeight:700,borderRadius:8,border:"none",background:T.btnPrimBg,color:T.btnPrimColor,cursor:"pointer",fontFamily:T.fontBody}}>👍 OK!</button>
+        <button onClick={retry} style={{padding:"8px 20px",fontSize:14,fontWeight:700,borderRadius:8,border:`1px solid ${T.btnGhostBorder}`,background:"transparent",color:T.btnGhostColor,cursor:"pointer",fontFamily:T.fontBody}}>🔄</button>
+      </div>
+    </>)}
+  </div>);
+}
+
 // ---------- UI ----------
-function Sq({value,onClick,highlight,fading,lastMove,T,blind,visible,hintDot}){
+function Sq({value,onClick,highlight,fading,lastMove,T,blind,visible,hintDot,faceO,faceX}){
   const isC=T.id==="comic";const bg=highlight?T.sqHl:fading?T.sqFade:T.sqBg;
   const border=highlight?`2px solid ${T.accent}`:fading?`2px dashed ${T.textDim}`:T.sqBorder;
   const show=!blind||visible||highlight;
+  const faceImg=value==="O"?faceO:value==="X"?faceX:null;
+  const showFace=faceImg&&show;
   return(<button onClick={onClick} style={{width:96,height:96,fontSize:isC?48:44,fontWeight:800,border,borderRadius:isC?12:2,background:bg,
-    color:show?(value==="O"?T.O:value==="X"?T.X:"transparent"):"transparent",
-    cursor:"pointer",transition:"color 0.3s, background 0.2s",fontFamily:T.fontTitle,opacity:fading?0.4:1,
+    color:show&&!showFace?(value==="O"?T.O:value==="X"?T.X:"transparent"):"transparent",
+    cursor:"pointer",transition:"all 0.3s",fontFamily:T.fontTitle,opacity:fading?0.4:1,
     boxShadow:isC?(highlight?"0 0 16px "+T.accent:"4px 4px 0 #1e1b4b"):(lastMove&&!highlight?"inset 0 0 0 2px rgba(201,166,107,0.5)":"inset 0 1px 3px rgba(0,0,0,0.15)"),
-    textShadow:isC?"2px 2px 0 rgba(0,0,0,0.2)":"none",position:"relative",
+    textShadow:isC?"2px 2px 0 rgba(0,0,0,0.2)":"none",position:"relative",overflow:"hidden",
   }}
     onMouseEnter={e=>{if(!value)e.currentTarget.style.background=isC?"#fde68a":"rgba(180,140,80,0.3)";}}
     onMouseLeave={e=>{e.currentTarget.style.background=bg;}}>
-    {value}
+    {showFace?<img src={faceImg} alt="" style={{width:76,height:76,borderRadius:38,objectFit:"cover",opacity:fading?0.3:1,transition:"opacity 0.5s"}}/>:value}
     {hintDot&&!value&&<span style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:10,height:10,borderRadius:5,background:T.accent,opacity:0.5}}/>}
   </button>);
 }
@@ -290,7 +396,7 @@ function AP({selected,onSelect,label,rankIdx,lockLabel,eliteLockLabel,legendLock
   </div>);
 }
 
-function SetM({t,T,showHint,setShowHint,lang,setLang,muted,setMuted,theme,setTheme,blind,setBlind,onRR,onClose}){
+function SetM({t,T,showHint,setShowHint,lang,setLang,muted,setMuted,theme,setTheme,blind,setBlind,vibOn,setVibOn,onRR,onClose}){
   const[cr,setCr]=useState(false);const isC=T.id==="comic";
   return(<div style={{position:"fixed",inset:0,zIndex:100,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.6)",backdropFilter:"blur(4px)"}} onClick={onClose}>
     <div onClick={e=>e.stopPropagation()} style={{background:isC?"linear-gradient(135deg,#312e81,#1e1b4b)":T.cardBg,border:T.cardBorder,borderRadius:isC?16:12,padding:"24px 28px",width:280,display:"flex",flexDirection:"column",gap:14,boxShadow:isC?"6px 6px 0 #0f0a2a":"0 20px 60px rgba(0,0,0,0.5)"}}>
@@ -299,6 +405,7 @@ function SetM({t,T,showHint,setShowHint,lang,setLang,muted,setMuted,theme,setThe
         <Toggle checked={showHint} onChange={()=>setShowHint(!showHint)} label={t.hintLabel} T={T}/>
         <Toggle checked={blind} onChange={()=>setBlind(!blind)} label={t.blindLabel+" 🙈"} T={T}/>
         <Toggle checked={muted} onChange={()=>setMuted(!muted)} label={t.muteLabel} T={T}/>
+        <Toggle checked={vibOn} onChange={()=>setVibOn(!vibOn)} label={t.vibLabel+" 📳"} T={T}/>
         <Toggle checked={lang==="en"} onChange={()=>setLang(l=>l==="ja"?"en":"ja")} label={t.langLabel} T={T}/>
         <Toggle checked={theme==="comic"} onChange={()=>setTheme(theme==="wood"?"comic":"wood")} label={t.themeLabel+(theme==="wood"?" 🪵":" 💥")} T={T}/>
       </div>
@@ -343,6 +450,55 @@ function RPB({snapshots,t,T,onClose}){const[step,setStep]=useState(snapshots.len
   </div>);
 }
 
+// ---------- Profile Page ----------
+function ProfilePage({t,T,prof,setProf,lang,onBack,isFirstLaunch}){
+  const[lp,setLP]=useState({...prof});const isC=T.id==="comic";
+  function sel(cat,val){setLP(p=>({...p,[cat]:p[cat]===val?null:val}));}
+  function save(){setProf(lp);onBack();}
+  const chip=(cat,val,label)=>{const on=lp[cat]===val;return(
+    <button key={val} onClick={()=>sel(cat,val)} style={{padding:"5px 10px",fontSize:12,fontWeight:700,borderRadius:8,
+      border:on?`2px solid ${T.accent}`:`1px solid ${T.accent}55`,
+      background:on?"rgba(180,140,80,0.25)":"rgba(255,255,255,0.06)",color:on?T.light:T.light+"cc",
+      cursor:"pointer",fontFamily:T.fontBody,transition:"all 0.15s"}}>{label}</button>
+  );};
+  const desc=isFirstLaunch
+    ?(lang==="ja"?"あなたのことを教えてね！ゲーム体験をカスタマイズするよ ✨":"Tell us about yourself! We'll customize your experience ✨")
+    :(lang==="ja"?"プロフィールを変更できるよ":"Edit your profile");
+  return(
+    <div className="theme-bg"><style>{baseCss}{T.css}</style><div style={{position:"relative",zIndex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:20,minHeight:"100vh",fontFamily:T.fontBody,gap:18}}>
+      <div style={{fontSize:22,fontWeight:800,color:T.light,fontFamily:T.fontTitle}}>{isFirstLaunch?(lang==="ja"?"ようこそ！":"Welcome!"):t.profileTitle}</div>
+      <div style={{fontSize:12,color:T.text,textAlign:"center",maxWidth:260}}>{desc}</div>
+
+      <div style={{width:280}}>
+        <div style={{fontSize:13,fontWeight:700,color:T.light,marginBottom:6}}>{t.zodiacLabel}</div>
+        <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
+          {ZODIACS.map(z=>{const sym=z.slice(0,1);const name=z.slice(1);const label=lang==="ja"?sym+ZODIAC_JA[z]:sym+" "+name.charAt(0).toUpperCase()+name.slice(1,4);return chip("zodiac",z,label);})}
+        </div>
+      </div>
+
+      <div style={{width:280}}>
+        <div style={{fontSize:13,fontWeight:700,color:T.light,marginBottom:6}}>{t.bloodLabel}</div>
+        <div style={{display:"flex",gap:6}}>{BLOODS.map(b=>chip("blood",b,lang==="ja"?b+"型":b))}</div>
+      </div>
+
+      <div style={{width:280}}>
+        <div style={{fontSize:13,fontWeight:700,color:T.light,marginBottom:6}}>{t.mbtiLabel}</div>
+        <div style={{display:"flex",flexWrap:"wrap",gap:4}}>{MBTIS.map(m=>chip("mbti",m,m))}</div>
+      </div>
+
+      <div style={{width:280}}>
+        <div style={{fontSize:13,fontWeight:700,color:T.light,marginBottom:6}}>{t.genLabel}</div>
+        <div style={{display:"flex",gap:6}}>{GENS.map(g=>chip("gen",g,t.genNames[g]))}</div>
+      </div>
+
+      <div style={{display:"flex",gap:8,marginTop:8}}>
+        <button onClick={save} style={{padding:"10px 28px",fontSize:15,fontWeight:700,borderRadius:isC?10:8,border:isC?`3px solid ${T.dark}`:"none",background:T.btnPrimBg,color:T.btnPrimColor,cursor:"pointer",fontFamily:T.fontBody,boxShadow:isC?"4px 4px 0 "+T.dark:"none"}}>{isFirstLaunch?(lang==="ja"?"はじめる！":"Let's go!"):t.save}</button>
+        {!isFirstLaunch&&<button onClick={onBack} style={{padding:"10px 28px",fontSize:15,fontWeight:700,borderRadius:isC?10:8,border:`1px solid ${T.btnGhostBorder}`,background:"transparent",color:T.btnGhostColor,cursor:"pointer",fontFamily:T.fontBody}}>{t.backMenu}</button>}
+      </div>
+    </div></div>
+  );
+}
+
 // ---------- Ranking Page ----------
 function RankingPage({t,T,rI,playerName,setPlayerName,onBack}){
   const[list,setList]=useState([]);const[loading,setLoading]=useState(true);const[nameInput,setNameInput]=useState(playerName);
@@ -379,7 +535,7 @@ export default function OXGame(){
   const[lang,setLang]=useState("ja");const t=LANG[lang];
   const[theme,setTheme]=useState("wood");const T=THEMES[theme];
   const[mode,setMode]=useState(null);const[aiLv,setAiLv]=useState(3);const[turnOrd,setTurnOrd]=useState("first");const[pMark,setPMark]=useState("O");
-  const[showHint,setSH]=useState(true);const[muted,setMuted]=useState(false);const[blind,setBlind]=useState(false);
+  const[showHint,setSH]=useState(true);const[muted,setMuted]=useState(false);const[blind,setBlind]=useState(false);const[vibOn,setVibOn]=useState(true);
   const[sOpen,setSOpen]=useState(false);
   const[board,setBoard]=useState(Array(9).fill(null));const[isON,setIsON]=useState(true);
   const[score,setScore]=useState({O:0,X:0});const[hist,setHist]=useState({X:[],O:[]});
@@ -391,6 +547,8 @@ export default function OXGame(){
   const[oMsg,setOMsg]=useState("");const[cop,setCop]=useState(false);
   const[mA,setMA]=useState("dog");const[oA,setOA]=useState(null);
   const[playerName,setPN]=useState("");
+  const[prof,setProf]=useState({zodiac:null,blood:null,mbti:null,gen:null});
+  const[profDone,setProfDone]=useState(false); // has user completed profile at least once
   const pR=useRef(null);const rR=useRef(null);
   const[snaps,setSnaps]=useState([{board:Array(9).fill(null),history:{X:[],O:[]}}]);
   const[sRP,setSRP]=useState(false);
@@ -399,7 +557,16 @@ export default function OXGame(){
   const[showBestHint,setShowBestHint]=useState(true); // show dots on good squares
   const[bestMoves,setBestMoves]=useState([]); // indices of top moves
   const[roast,setRoast]=useState(null);
-  // Blind mode visibility: tracks which cells are currently visible
+  const[faceO,setFaceO]=useState(null);const[faceX,setFaceX]=useState(null); // data URLs for face mode
+  // Smart roast picker: mix generic + attribute-specific
+  function pickRoast(){
+    const attrR=lang==="ja"?ATTR_ROASTS_JA:ATTR_ROASTS_EN;const pool=[...t.roasts];
+    if(prof.zodiac&&attrR.zodiac[prof.zodiac])pool.push(attrR.zodiac[prof.zodiac],attrR.zodiac[prof.zodiac]);
+    if(prof.blood&&attrR.blood[prof.blood])pool.push(attrR.blood[prof.blood],attrR.blood[prof.blood]);
+    if(prof.mbti&&attrR.mbti[prof.mbti])pool.push(attrR.mbti[prof.mbti],attrR.mbti[prof.mbti]);
+    if(prof.gen&&attrR.gen[prof.gen])pool.push(attrR.gen[prof.gen],attrR.gen[prof.gen]);
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
   const[visible,setVisible]=useState(Array(9).fill(false));
   const blindTimers=useRef({});
 
@@ -410,12 +577,14 @@ export default function OXGame(){
     blindTimers.current[idx]=setTimeout(()=>{setVisible(v=>{const n=[...v];n[idx]=false;return n;});},1000);
   }
 
-  useEffect(()=>{(async()=>{try{const r=await window.storage.get("ox-rank");if(r?.value){const d=JSON.parse(r.value);setRI(d.rankIdx||0);setStk(d.streak||0);}}catch(e){}try{const r=await window.storage.get("ox-avatar");if(r?.value)setMA(r.value);}catch(e){}try{const r=await window.storage.get("ox-theme");if(r?.value&&THEMES[r.value])setTheme(r.value);}catch(e){}try{const r=await window.storage.get("ox-name");if(r?.value)setPN(r.value);}catch(e){}setRLd(true);})();},[]);
+  useEffect(()=>{(async()=>{try{const r=await window.storage.get("ox-rank");if(r?.value){const d=JSON.parse(r.value);setRI(d.rankIdx||0);setStk(d.streak||0);}}catch(e){}try{const r=await window.storage.get("ox-avatar");if(r?.value)setMA(r.value);}catch(e){}try{const r=await window.storage.get("ox-theme");if(r?.value&&THEMES[r.value])setTheme(r.value);}catch(e){}try{const r=await window.storage.get("ox-name");if(r?.value)setPN(r.value);}catch(e){}try{const r=await window.storage.get("ox-prof");if(r?.value){setProf(JSON.parse(r.value));setProfDone(true);}}catch(e){}setRLd(true);})();},[]);
   useEffect(()=>{if(!rL)return;(async()=>{try{await window.storage.set("ox-rank",JSON.stringify({rankIdx:rI,streak:stk}));}catch(e){}})();},[rI,stk,rL]);
   useEffect(()=>{(async()=>{try{await window.storage.set("ox-avatar",mA);}catch(e){}})();},[mA]);
   useEffect(()=>{(async()=>{try{await window.storage.set("ox-theme",theme);}catch(e){}})();},[theme]);
   useEffect(()=>{(async()=>{try{await window.storage.set("ox-name",playerName);}catch(e){}})();},[playerName]);
+  useEffect(()=>{(async()=>{try{await window.storage.set("ox-prof",JSON.stringify(prof));}catch(e){}})();},[prof]);
   useEffect(()=>{MU=muted;},[muted]);
+  useEffect(()=>{VIB=vibOn;},[vibOn]);
   useEffect(()=>{return()=>{if(pR.current)clearInterval(pR.current);Object.values(blindTimers.current).forEach(clearTimeout);};},[]);
 
   const cpuM=pMark==="O"?"X":"O";
@@ -434,9 +603,9 @@ export default function OXGame(){
     }else if(mode==="cpu"&&wm===cpuM){
       if(qualifies(rI,aiLv,showHint,blind))setStk(0);
       setTimeout(()=>sL(),200);
-      setRoast(t.roasts[Math.floor(Math.random()*t.roasts.length)]);
+      setRoast(pickRoast());setTimeout(vibRoast,600);
     }else if(mode==="practice"){
-      setTimeout(()=>{if(wm===pMark)sW();else{sL();setRoast(t.roasts[Math.floor(Math.random()*t.roasts.length)]);}},200);
+      setTimeout(()=>{if(wm===pMark)sW();else{sL();setRoast(pickRoast());setTimeout(vibRoast,600);}},200);
     }else if(mode==="online"){setTimeout(()=>{if(wm===mM)sW();else sL();},200);
     }else{setTimeout(()=>sW(),200);}}
 
@@ -452,7 +621,7 @@ export default function OXGame(){
     // Pre-compute commentary for CPU move in practice
     let cpuComment=null;
     if(mode==="practice"){const ranked=evalMoves(board,hist,cpuM);const ctx=detectCtx(board,hist,cpuM,mv,ranked);cpuComment=genComment(ctx,"great",mv,null,lang);}
-    const next=[...board];const nh={X:[...hist.X],O:[...hist.O]};const hv=nh[cpuM].length>=3;if(hv){next[nh[cpuM].shift()]=null;}next[mv]=cpuM;nh[cpuM].push(mv);if(hv)sV();setTimeout(()=>sP(cpuM),hv?80:0);setBoard(next);setHist(nh);setIsON(cpuM==="X");setThink(false);addS(next,nh);if(blind)showCell(mv);
+    const next=[...board];const nh={X:[...hist.X],O:[...hist.O]};const hv=nh[cpuM].length>=3;if(hv){next[nh[cpuM].shift()]=null;}next[mv]=cpuM;nh[cpuM].push(mv);if(hv)sV();setTimeout(()=>sP(cpuM),hv?80:0);setBoard(next);setHist(nh);setIsON(cpuM==="X");setThink(false);addS(next,nh);if(blind){showCell(mv);vibBlind();}else{vibTap();}
     if(cpuComment)setAdvice({grade:"cpu",msg:lang==="ja"?"🤖 CPUの手":"🤖 CPU's move",comment:cpuComment,bestIdx:null});
     const r=cW(next);if(r?.winner)hWR(r.winner);},350);},[isCT,aiLv,board,hist,rI,stk,showHint,blind,cpuM,mode,lang]);
   useEffect(()=>{doAI();},[doAI]);
@@ -460,7 +629,8 @@ export default function OXGame(){
   // Online
   async function createR(){const code=genCode();setRC(code);const room={host:pId,guest:null,board:Array(9).fill(null),history:{X:[],O:[]},isONext:true,gameOver:false,winner:null,ts:Date.now(),round:0,hostAvatar:mA,guestAvatar:null};try{await window.storage.set(RK(code),JSON.stringify(room),true);}catch(e){}rR.current=room;setMM("O");setMode("online-create");setOA(null);stPl(code,"O");}
   async function joinR(){const code=jC.toUpperCase().trim();if(!code)return;try{const r=await window.storage.get(RK(code),true);if(!r?.value){setOMsg(t.roomNotFound);return;}const room=JSON.parse(r.value);if(room.guest&&room.guest!==pId){setOMsg(t.roomFull);return;}room.guest=pId;room.guestAvatar=mA;room.ts=Date.now();await window.storage.set(RK(code),JSON.stringify(room),true);rR.current=room;setRC(code);setMM("X");setBoard(room.board);setHist(room.history);setIsON(room.isONext);setGO(room.gameOver);setOA(room.hostAvatar);setMode("online");stPl(code,"X");}catch(e){setOMsg(t.roomNotFound);}}
-  function stPl(code,mark){if(pR.current)clearInterval(pR.current);pR.current=setInterval(async()=>{try{const r=await window.storage.get(RK(code),true);if(!r?.value)return;const room=JSON.parse(r.value);rR.current=room;if(mark==="O"&&room.guest){setMode(m=>m==="online-create"?"online":m);if(room.guestAvatar)setOA(room.guestAvatar);}if(mark==="X"&&room.hostAvatar)setOA(room.hostAvatar);setBoard(room.board);setHist(room.history);setIsON(room.isONext);if(room.gameOver&&room.winner){setGO(true);setScore(s=>({...s,[room.winner]:s[room.winner]+1}));}}catch(e){}},1500);}
+  const prevBoardRef=useRef(JSON.stringify(Array(9).fill(null)));
+  function stPl(code,mark){if(pR.current)clearInterval(pR.current);pR.current=setInterval(async()=>{try{const r=await window.storage.get(RK(code),true);if(!r?.value)return;const room=JSON.parse(r.value);rR.current=room;if(mark==="O"&&room.guest){setMode(m=>m==="online-create"?"online":m);if(room.guestAvatar)setOA(room.guestAvatar);}if(mark==="X"&&room.hostAvatar)setOA(room.hostAvatar);const newBoardStr=JSON.stringify(room.board);if(newBoardStr!==prevBoardRef.current){prevBoardRef.current=newBoardStr;const myTurn=(room.isONext&&mark==="O")||(!room.isONext&&mark==="X");if(myTurn)vibTap();}setBoard(room.board);setHist(room.history);setIsON(room.isONext);if(room.gameOver&&room.winner){setGO(true);setScore(s=>({...s,[room.winner]:s[room.winner]+1}));}}catch(e){}},1500);}
   async function olP(i){const room=rR.current;if(!room)return;const cp=room.isONext?"O":"X";if(cp!==mM||room.board[i]||room.gameOver)return;await ensA();const next=[...room.board];const nh={X:[...room.history.X],O:[...room.history.O]};const hv=nh[mM].length>=3;if(hv){next[nh[mM].shift()]=null;}next[i]=mM;nh[mM].push(i);if(hv)sV();setTimeout(()=>sP(mM),hv?80:0);const r=cW(next);const u={...room,board:next,history:nh,isONext:!room.isONext,ts:Date.now()};if(r?.winner){u.gameOver=true;u.winner=r.winner;}try{await window.storage.set(RK(rC),JSON.stringify(u),true);}catch(e){}rR.current=u;setBoard(next);setHist(nh);setIsON(!room.isONext);addS(next,nh);if(r?.winner)hWR(r.winner);}
   async function olRst(){const room=rR.current;if(!room)return;const u={...room,board:Array(9).fill(null),history:{X:[],O:[]},isONext:true,gameOver:false,winner:null,round:(room.round||0)+1,ts:Date.now()};try{await window.storage.set(RK(rC),JSON.stringify(u),true);}catch(e){}rR.current=u;setBoard(u.board);setHist(u.history);setIsON(true);setGO(false);setSnaps([{board:Array(9).fill(null),history:{X:[],O:[]}}]);}
   function leaveOl(){if(pR.current)clearInterval(pR.current);pR.current=null;rR.current=null;setMode(null);setRC("");setJC("");setOMsg("");setOA(null);setBoard(Array(9).fill(null));setHist({X:[],O:[]});setIsON(true);setGO(false);setScore({O:0,X:0});setSnaps([{board:Array(9).fill(null),history:{X:[],O:[]}}]);}
@@ -484,12 +654,12 @@ export default function OXGame(){
       const r=cW(next);if(r?.winner)hWR(r.winner);});}
 
   function reset(){setBoard(Array(9).fill(null));setHist({X:[],O:[]});setIsON(true);setGO(false);setThink(false);setSnaps([{board:Array(9).fill(null),history:{X:[],O:[]}}]);setVisible(Array(9).fill(false));Object.values(blindTimers.current).forEach(clearTimeout);setAdvice(null);setBestMoves([]);setRoast(null);}
-  function bMenu(){if(mode==="online"){leaveOl();return;}reset();setScore({O:0,X:0});setMode(null);}
+  function bMenu(){if(mode==="online"){leaveOl();return;}reset();setScore({O:0,X:0});setMode(null);setFaceO(null);setFaceX(null);}
   function rRank(){setRI(0);setStk(0);const av=AVATARS.find(a=>a.id===mA);if(av?.monster||av?.elite||av?.legend||av?.god)setMA("dog");}
 
   const isC=T.id==="comic";
   const lvC=isC?["","#86efac","#a3e635","#fbbf24","#fb923c","#ef4444"]:["",T.text,T.text,T.accent,T.accent,T.light];
-  const sM=sOpen&&<SetM t={t} T={T} showHint={showHint} setShowHint={setSH} lang={lang} setLang={setLang} muted={muted} setMuted={setMuted} theme={theme} setTheme={setTheme} blind={blind} setBlind={setBlind} onRR={rRank} onClose={()=>setSOpen(false)}/>;
+  const sM=sOpen&&<SetM t={t} T={T} showHint={showHint} setShowHint={setSH} lang={lang} setLang={setLang} muted={muted} setMuted={setMuted} theme={theme} setTheme={setTheme} blind={blind} setBlind={setBlind} vibOn={vibOn} setVibOn={setVibOn} onRR={rRank} onClose={()=>setSOpen(false)}/>;
   const ruO=showRU&&<RUO rankIdx={rI} t={t} T={T} onClose={()=>setShowRU(false)}/>;
   const gear=<button onClick={()=>setSOpen(true)} style={{position:"absolute",top:16,right:16,width:38,height:38,borderRadius:isC?10:8,border:isC?`3px solid ${T.text}`:`1px solid ${T.cardBorder}`,background:isC?"rgba(30,10,60,0.8)":T.cardBg,color:T.textDim,fontSize:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{"\u2699"}</button>;
   const rn=getRS(rI);const sSP=rI>=9&&rI<20;
@@ -499,18 +669,27 @@ export default function OXGame(){
 
   // ========== RANKING ==========
   if(mode==="ranking")return <RankingPage t={t} T={T} rI={rI} playerName={playerName} setPlayerName={setPN} onBack={()=>setMode(null)}/>;
+  if(mode==="profile")return <ProfilePage t={t} T={T} prof={prof} setProf={p=>{setProf(p);setProfDone(true);}} lang={lang} isFirstLaunch={false} onBack={()=>setMode(null)}/>;
+
+  // First launch: show profile before menu
+  if(rL&&!profDone&&mode===null)return <ProfilePage t={t} T={T} prof={prof} setProf={p=>{setProf(p);setProfDone(true);}} lang={lang} isFirstLaunch={true} onBack={()=>setProfDone(true)}/>;
+
+  // ========== FACE CAPTURE ==========
+  if(mode==="face-pvp-1"){return(<Wrap><Title size={26}/><FaceCapture label={t.faceP1} T={T} onCapture={d=>{setFaceO(d);setMode("face-pvp-2");}} onSkip={()=>{setFaceO(null);setMode("face-pvp-2");}}/></Wrap>);}
+  if(mode==="face-pvp-2"){return(<Wrap><Title size={26}/>{faceO&&<img src={faceO} style={{width:48,height:48,borderRadius:24,border:`2px solid ${T.accent}`,opacity:0.6}} alt=""/>}<FaceCapture label={t.faceP2} T={T} onCapture={d=>{setFaceX(d);setMode("pvp");}} onSkip={()=>{setFaceX(null);setMode("pvp");}}/></Wrap>);}
+  if(mode==="face-cpu"){return(<Wrap><Title size={26}/><FaceCapture label={t.faceCpu} T={T} onCapture={d=>{const m=turnOrd==="first"?"O":turnOrd==="second"?"X":Math.random()<0.5?"O":"X";setPMark(m);if(m==="O")setFaceO(d);else setFaceX(d);setMode("cpu");}} onSkip={()=>{const m=turnOrd==="first"?"O":turnOrd==="second"?"X":Math.random()<0.5?"O":"X";setPMark(m);setMode("cpu");}}/></Wrap>);}
 
   // ========== MENU ==========
   if(mode===null){return(<Wrap>
     {gear}{sM}{ruO}
     <div style={{textAlign:"center",animation:"fadeIn 0.6s ease"}}><Title/><div style={{fontSize:11,color:T.subColor||T.textFaint,fontFamily:T.fontTitle,marginTop:4,letterSpacing:3}}>{T.sub}</div></div>
     <div style={{display:"flex",alignItems:"center",gap:12,animation:"fadeIn 0.6s ease 0.1s both"}}>
-      <RB rankIdx={rI} t={t} T={T}/><div style={{fontSize:10,color:T.textFaint}}>{t.nextReq}: <span style={{color:T.textDim}}>{getPR(rI,t)}</span></div>
+      <RB rankIdx={rI} t={t} T={T}/><div style={{fontSize:11,color:T.text}}>{t.nextReq}: <span style={{color:T.light,fontWeight:700}}>{getPR(rI,t)}</span></div>
     </div>
     {sSP&&<div style={{fontSize:10,color:T.accent,marginTop:-14}}>{t.streakProgress(stk,rn)}</div>}
     <div style={{display:"flex",flexDirection:"column",gap:10,width:260,animation:"fadeIn 0.6s ease 0.2s both"}}>
-      <Btn primary onClick={()=>setMode("pvp")} style={{padding:"14px 0",fontSize:17,width:"100%"}}>{t.pvp}</Btn>
-      <Btn onClick={()=>{setPMark("O");setMode("practice");}} style={{padding:"12px 0",fontSize:15,width:"100%"}}>{t.practice}</Btn>
+      <Btn primary onClick={()=>setMode("face-pvp-1")} style={{padding:"14px 0",fontSize:17,width:"100%"}}>{t.pvp}</Btn>
+      <Btn onClick={()=>{setPMark("O");setMode("practice");}} style={{padding:"12px 0",fontSize:15,width:"100%",color:T.light,borderColor:T.accent}}>{t.practice}</Btn>
       <div className={isC?"comic-card":""} style={{background:isC?"linear-gradient(135deg,rgba(30,10,60,0.9),rgba(20,5,40,0.95))":T.cardBg,border:isC?undefined:`1px solid ${T.cardBorder}`,borderRadius:12,padding:"16px 20px",display:"flex",flexDirection:"column",alignItems:"center",gap:12}}>
         <div style={{fontSize:15,fontWeight:700,color:T.light,fontFamily:T.fontTitle}}>{t.cpuBattle}</div>
         <div style={{display:"flex",gap:5}}>
@@ -522,9 +701,11 @@ export default function OXGame(){
           {[["first",t.first],["second",t.second],["random",t.random]].map(([k,lb])=>(<button key={k} onClick={()=>setTurnOrd(k)} style={{padding:"4px 10px",fontSize:12,fontWeight:700,borderRadius:6,border:turnOrd===k?`2px solid ${T.accent}`:`1px solid ${T.cardBorder}`,background:turnOrd===k?"rgba(180,140,80,0.15)":"transparent",color:turnOrd===k?T.accent:T.textFaint,cursor:"pointer",fontFamily:T.fontBody}}>{lb}</button>))}
         </div>
         <Btn primary onClick={()=>{const m=turnOrd==="first"?"O":turnOrd==="second"?"X":Math.random()<0.5?"O":"X";setPMark(m);setMode("cpu");}} style={{padding:"10px 0",width:"100%"}}>{t.start}</Btn>
+        <Btn onClick={()=>setMode("face-cpu")} style={{padding:"7px 0",fontSize:12,width:"100%"}}>{t.faceMode}</Btn>
       </div>
       <Btn onClick={()=>setMode("online-lobby")} style={{padding:"14px 0",fontSize:17,width:"100%"}}>{t.online}</Btn>
       <Btn onClick={()=>setMode("ranking")} style={{padding:"12px 0",fontSize:15,width:"100%"}}>{t.ranking}</Btn>
+      <Btn onClick={()=>setMode("profile")} style={{padding:"12px 0",fontSize:15,width:"100%"}}>{t.profile}</Btn>
     </div>
     <div style={{fontSize:10,color:T.textFaint,marginTop:4}}>{t.desc}</div>
   </Wrap>);}
@@ -593,7 +774,7 @@ export default function OXGame(){
     </div>}
     <div style={{fontSize:11,color:T.warn,minHeight:14,fontWeight:600}}>{mInfo}</div>
     <div style={{display:"grid",gridTemplateColumns:"repeat(3, 96px)",gap:isC?5:3,background:T.boardBg,padding:isC?5:3,borderRadius:isC?14:4,border:T.boardBorder,boxShadow:isC?"8px 8px 0 rgba(0,0,0,0.3)":"0 4px 20px rgba(0,0,0,0.3)"}}>
-      {board.map((v,i)=>(<Sq key={i} value={v} onClick={()=>hClick(i)} highlight={wLine.includes(i)} fading={fI===i} lastMove={!gO&&lM===i} T={T} blind={blind&&!gO} visible={visible[i]} hintDot={mode==="practice"&&showBestHint&&bestMoves.includes(i)}/>))}
+      {board.map((v,i)=>(<Sq key={i} value={v} onClick={()=>hClick(i)} highlight={wLine.includes(i)} fading={fI===i} lastMove={!gO&&lM===i} T={T} blind={blind&&!gO} visible={visible[i]} hintDot={mode==="practice"&&showBestHint&&bestMoves.includes(i)} faceO={faceO} faceX={faceX}/>))}
     </div>
     {mode==="practice"&&advice&&!think&&(
       <div style={{maxWidth:290,padding:"10px 16px",borderRadius:isC?14:10,background:T.cardBg,border:`1px solid ${advice.grade==="cpu"?T.textDim+"44":T.cardBorder}`,textAlign:"center",display:"flex",flexDirection:"column",gap:6,animation:"fadeIn 0.3s ease"}}>
